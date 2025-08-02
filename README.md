@@ -226,6 +226,25 @@ DOM node-level access
 ### Affected browsers
 Firefox
 
+## DataTransfer.prototype.getData
+```js
+// for Chrome / Firefox
+// Drag selected Shadow area. Leaks also occur in Safari if you manually select and drag the secret text
+window.find('This is a secret:');
+document.execCommand('selectAll');
+window.ondragstart = function(event){
+  alert(event.dataTransfer.getData('text'));
+}
+```
+### Impact
+text access, attribute value access
+
+### Affected browsers
+Chrome, Firefox, Safari
+
+### Notes
+* `getData('text/html')` can leak not only text but also attribute values.
+
 ## InputEvent.prototype.getTargetRanges
 ```js
 // Type something into the contenteditable area inside Shadow area
