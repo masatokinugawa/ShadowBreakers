@@ -263,6 +263,27 @@ DOM node-level access
 ### Affected browsers
 Chrome, Firefox, Safari
 
+
+## Drag and drop HTML to contenteditable area
+```js
+img=document.createElement('img');
+img.src='#';
+img.style="font-size:50px";
+img.alt="Drag & drop me to contenteditable area!";
+img.setAttribute('onerror','root=getRootNode();if(root instanceof ShadowRoot){alert(root.querySelector("#secret").textContent);}');
+document.body.appendChild(img);
+```
+
+### Impact
+DOM node-level access
+
+### Affected browsers
+Firefox
+
+### Notes
+* While this isn't a JavaScript API issue, it's worth mentioning.
+* Chrome and Safari sanitize the dragged HTML when dropped.
+
 ## CSS inheritance
 
 ```js
